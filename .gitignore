@@ -1,0 +1,33 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+
+# Build outputs (if using React or similar frontend)
+dist/
+build/
+
+# Coverage (if using testing)
+coverage/
+
+# Optional: ignore frontend node_modules if it's a separate directory
+frontend/node_modules/
+
+# Optional: ignore frontend build if it's in a client folder
+client/build/
+client/node_modules/
