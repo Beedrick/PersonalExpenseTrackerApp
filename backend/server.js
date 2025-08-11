@@ -28,5 +28,8 @@ app.get('/test', (req, res) => {
   
 const PORT = 3000;
 const transactionsRouter = require('./routes/transactions');
+const userRouter = require('./routes/user');
+
 app.use('/api/transactions', transactionsRouter);
+app.use('/api/user', userRouter);
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

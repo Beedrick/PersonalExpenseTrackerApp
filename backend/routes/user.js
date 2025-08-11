@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create new user with encrypted password
-    const user = new User({
+    const user = new NewUser({
       username,
       email,
       password: hashedPassword
