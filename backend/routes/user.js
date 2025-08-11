@@ -4,7 +4,7 @@ const NewUser = require('../models/Users/NewUser');
 const bcrypt = require('bcrypt');
 
 router.post('/', async (req, res) => {
-
+  try {
     // Take user input
     const { username, password, email } = req.body;
 
@@ -12,14 +12,18 @@ router.post('/', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create new user with encrypted password
-    const user = new NewUser({
-        username,
-        email,
-        password: hashedPassword
+    const user = new User({
+      username,
+      email,
+      password: hashedPassword
     });
 
     const saved = await user.save();
     res.status(201).json(saved);
+
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
 
