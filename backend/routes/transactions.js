@@ -8,7 +8,7 @@ router.post('/', authMiddleware, async (req, res) => {
   try {
     const transaction = new Transaction(req.body);
     const saved = await transaction.save();
-    res.status(201).json(saved);
+    res.status(201).json(saved, {user: req.user});
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -18,7 +18,7 @@ router.post('/', authMiddleware, async (req, res) => {
 router.get('/', authMiddleware, async (req, res) => {
   try {
     const transactions = await Transaction.find().sort({ date: -1 });
-    res.json(transactions);
+    res.json(transactions,  {user: req.user});
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

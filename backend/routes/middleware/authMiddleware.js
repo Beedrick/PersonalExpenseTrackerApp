@@ -4,7 +4,7 @@ function authMiddleware(req, res, next) {
   const token = req.cookies?.token;  // Extract token from cookie named 'token'
 
   if (!token) {
-    return res.status(401).json({ message: 'Authentication required' });
+    return res.status(401).json({ message: 'bleh Authentication required' });
   }
 
   try {
