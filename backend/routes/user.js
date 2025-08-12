@@ -5,13 +5,11 @@ const bcrypt = require('bcrypt');
 
 router.post('/', async (req, res) => {
   try {
-    // Take user input
+
     const { username, password, email } = req.body;
 
-    // Hash the password (10 salt rounds)
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create new user with encrypted password
     const user = new NewUser({
       username,
       email,

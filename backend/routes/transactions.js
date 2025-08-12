@@ -1,9 +1,10 @@
 const express = require('express');
+const authMiddleware = require('./middleware/authMiddleware');
 const router = express.Router();
 const Transaction = require('../models/Transactions/Transaction');
 
 // POST: Create new transaction
-router.post('/', async (req, res) => {
+router.post('/', authMiddleware, async (req, res) => {
   try {
     const transaction = new Transaction(req.body);
     const saved = await transaction.save();
@@ -14,7 +15,7 @@ router.post('/', async (req, res) => {
 });
 
 // GET: All transactions
-router.get('/', async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
   try {
     const transactions = await Transaction.find().sort({ date: -1 });
     res.json(transactions);
@@ -24,7 +25,7 @@ router.get('/', async (req, res) => {
 });
 
 // DELETE: Remove transaction
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authMiddleware, async (req, res) => {
   try {
     await Transaction.findByIdAndDelete(req.params.id);
     res.json({ message: 'Transaction deleted' });
